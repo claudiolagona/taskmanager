@@ -1,0 +1,4 @@
+# Task Manager Data File
+# Generato il: Sat Jun 28 12:34:16 CEST 2025
+
+TASK|dedc33eb|Task Test|Descrizione test|Da fare|Media
