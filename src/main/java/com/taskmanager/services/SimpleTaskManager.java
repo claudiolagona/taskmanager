@@ -3,6 +3,7 @@ package com.taskmanager.services;
 import com.taskmanager.models.Task;
 import com.taskmanager.storage.TaskStorage;
 import com.taskmanager.observer.TaskNotifier;
+import com.taskmanager.observer.TaskObserver;
 import com.taskmanager.config.AppConfig;
 
 import java.util.List;
@@ -10,6 +11,9 @@ import java.util.List;
 /**
  * Implementazione semplice del TaskManager.
  * Usa TaskStorage per la persistenza e TaskNotifier per le notifiche.
+ * 
+ * @param storage il TaskStorage per la persistenza dei task
+ * @param notifier il TaskNotifier per le notifiche agli observer
  */
 public class SimpleTaskManager implements TaskManager {
     private final TaskStorage storage;
@@ -70,14 +74,16 @@ public class SimpleTaskManager implements TaskManager {
     
     /**
      * Aggiunge un observer per le notifiche
+     * 
      * @param observer l'observer da aggiungere
      */
-    public void addObserver(com.taskmanager.observer.TaskObserver observer) {
+    public void addObserver(TaskObserver observer) {
         notifier.addObserver(observer);
     }
     
     /**
      * Restituisce il numero di task salvati
+     * 
      * @return numero di task
      */
     public int getTaskCount() {
@@ -85,7 +91,7 @@ public class SimpleTaskManager implements TaskManager {
     }
     
     /**
-     * Pulisce tutti i task (utile per testing)
+     * Pulisce tutti i task
      */
     public void clearAllTasks() {
         storage.clear();

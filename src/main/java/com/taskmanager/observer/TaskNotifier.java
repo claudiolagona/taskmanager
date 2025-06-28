@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Subject nel pattern Observer.
  * Mantiene una lista di observer e li notifica quando succede qualcosa.
+ * 
+ * @param observer l'interfaccia che deve essere implementata dagli observer
  */
 public class TaskNotifier {
     private final List<TaskObserver> observers = new ArrayList<>();
     
     /**
      * Aggiunge un observer
+     * 
      * @param observer l'observer da aggiungere
      */
     public void addObserver(TaskObserver observer) {
@@ -22,6 +24,7 @@ public class TaskNotifier {
     
     /**
      * Rimuove un observer
+     * 
      * @param observer l'observer da rimuovere
      */
     public void removeObserver(TaskObserver observer) {
@@ -30,6 +33,7 @@ public class TaskNotifier {
     
     /**
      * Notifica tutti gli observer
+     * 
      * @param eventType tipo di evento
      * @param message messaggio
      * @param taskId ID del task
@@ -46,6 +50,7 @@ public class TaskNotifier {
     
     /**
      * Restituisce il numero di observer registrati
+     * 
      * @return numero di observer
      */
     public int getObserverCount() {

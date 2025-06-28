@@ -27,11 +27,16 @@ import java.util.stream.Collectors;
 /**
  * Interfaccia a linea di comando per il Task Manager.
  * Coordina tutti i pattern e fornisce un'interfaccia utente semplice.
+ * 
+ * @param taskManager istanza del TaskManager da utilizzare
+ * @param scanner oggetto Scanner per leggere input da console
+ * @param sortStrategy strategia di ordinamento per i task
+ * @param running flag per controllare il loop principale
  */
 public class TaskManagerCLI {
     private final TaskManager taskManager;
     private final Scanner scanner;
-    private final SortStrategy<com.taskmanager.models.TaskComponent> sortStrategy;
+    private final SortStrategy<TaskComponent> sortStrategy;
     private boolean running = true;
     
     /**
@@ -41,14 +46,14 @@ public class TaskManagerCLI {
         // Crea il task manager base
         SimpleTaskManager simpleManager = new SimpleTaskManager();
         
-        // Aggiunge un observer per le notifiche (Observer pattern)
+        // Aggiunge un observer per le notifiche
         simpleManager.addObserver(new ConsoleObserver());
         
-        // Wrappa con un proxy di sicurezza (Proxy pattern)
+        // Wrappa con un proxy di sicurezza
         this.taskManager = new SecureTaskManager(simpleManager, "studente");
         
         this.scanner = new Scanner(System.in);
-        this.sortStrategy = new SortByTitle(); // Strategy pattern
+        this.sortStrategy = new SortByTitle();
         
         System.out.println("🚀 Task Manager avviato con successo!");
         System.out.println("Digita 'help' per vedere i comandi disponibili.");
@@ -77,7 +82,7 @@ public class TaskManagerCLI {
     }
     
     /**
-     * Processa i comandi dell'utente (semplificato rispetto al Chain of Responsibility)
+     * Processa i comandi dell'utente
      */
     private void processCommand(String command, String args) {
         switch (command) {
@@ -142,7 +147,9 @@ public class TaskManagerCLI {
     }
     
     /**
-     * Crea un nuovo task usando il Builder pattern
+     * Crea un nuovo task
+     * 
+     * @param title titolo del task
      */
     private void createTask(String title) {
         if (title.isEmpty()) {
@@ -155,7 +162,6 @@ public class TaskManagerCLI {
             return;
         }
         
-        // Usa il Builder pattern per creare il task
         Task task = new TaskBuilder(title)
                 .withDescription("Task creato da CLI")
                 .withPriority(TaskPriority.MEDIUM)
@@ -166,7 +172,9 @@ public class TaskManagerCLI {
     }
     
     /**
-     * Crea un task urgente usando il Decorator pattern
+     * Crea un task urgente
+     * 
+     * @param title titolo del task urgente
      */
     private void createUrgentTask(String title) {
         if (title.isEmpty()) {
@@ -179,11 +187,10 @@ public class TaskManagerCLI {
             return;
         }
         
-        // Crea task con Factory
+        // Crea task
         Task task = TaskFactory.createTask(title, "Task urgente creato da CLI");
         task.setPriority(TaskPriority.CRITICAL);
         
-        // Applica il Decorator pattern
         UrgentTaskDecorator urgentTask = new UrgentTaskDecorator(task);
         
         taskManager.addTask(task);
@@ -191,7 +198,7 @@ public class TaskManagerCLI {
     }
     
     /**
-     * Lista tutti i task usando Iterator e Strategy pattern
+     * Lista tutti i task
      */
     private void listTasks() {
         List<Task> tasks = taskManager.getAllTasks();
@@ -204,7 +211,6 @@ public class TaskManagerCLI {
         System.out.println("\n📋 LISTA TASK (" + tasks.size() + " totali):");
         System.out.println("=" .repeat(50));
         
-        // Usa l'Iterator pattern
         TaskIterator iterator = new TaskIterator(tasks);
         int counter = 1;
         
@@ -220,6 +226,8 @@ public class TaskManagerCLI {
     
     /**
      * Mostra i dettagli di un task specifico
+     * 
+     * @param id ID del task da visualizzare
      */
     private void showTask(String id) {
         if (id.isEmpty()) {
@@ -243,6 +251,8 @@ public class TaskManagerCLI {
     
     /**
      * Elimina un task
+     * 
+     * @param id ID del task da eliminare
      */
     private void deleteTask(String id) {
         if (id.isEmpty()) {
@@ -258,6 +268,8 @@ public class TaskManagerCLI {
 
     /**
      * Crea un nuovo progetto
+     * 
+     * @param title titolo del progetto
      */
     private void createProject(String title) {
         if (title.isEmpty()) {
@@ -273,7 +285,7 @@ public class TaskManagerCLI {
         Project project = new Project(title, "Progetto creato da CLI");
         System.out.println("✅ Progetto creato: " + project.getTitle() + " (ID: " + project.getId() + ")");
         
-        // Chiedi se vuole aggiungere task al progetto
+        // Chiede se l'utente vuole aggiungere task al progetto
         System.out.print("Vuoi aggiungere task a questo progetto? (y/n): ");
         String response = scanner.nextLine().trim().toLowerCase();
         if ("y".equals(response) || "yes".equals(response)) {
@@ -283,6 +295,8 @@ public class TaskManagerCLI {
 
     /**
      * Aggiunge task a un progetto
+     * 
+     * @param project il progetto a cui aggiungere i task
      */
     private void addTasksToProject(Project project) {
         System.out.println("📋 Aggiungi task al progetto '" + project.getTitle() + "'");
@@ -309,6 +323,8 @@ public class TaskManagerCLI {
 
     /**
      * Cambia lo status di un task
+     * 
+     * @param id ID del task da modificare
      */
     private void changeTaskStatus(String id) {
         if (id.isEmpty()) {
@@ -351,6 +367,8 @@ public class TaskManagerCLI {
 
     /**
      * Cambia la priorità di un task
+     * 
+     * @param id ID del task da modificare
      */
     private void changeTaskPriority(String id) {
         if (id.isEmpty()) {
@@ -393,6 +411,8 @@ public class TaskManagerCLI {
 
     /**
      * Ordina e mostra task con diverse strategie
+     * 
+     * @param strategy strategia di ordinamento (title, priority, status)
      */
     private void sortTasks(String strategy) {
         List<Task> tasks = taskManager.getAllTasks();
@@ -439,6 +459,8 @@ public class TaskManagerCLI {
 
     /**
      * Filtra task per status
+     * 
+     * @param status lo status da filtrare (todo, progress, done, cancelled)
      */
     private void filterTasksByStatus(String status) {
         if (status.isEmpty()) {

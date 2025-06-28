@@ -6,12 +6,12 @@ import com.taskmanager.models.TaskPriority;
 
 /**
  * Adapter per convertire Task nel formato di un sistema legacy.
- * Implementa il pattern Adapter per interfacciarsi con sistemi vecchi.
  */
 public class LegacyTaskAdapter {
     
     /**
      * Converte un Task moderno in formato legacy
+     * 
      * @param task il task moderno
      * @return task in formato legacy
      */
@@ -30,6 +30,9 @@ public class LegacyTaskAdapter {
     
     /**
      * Converte uno status moderno in formato legacy
+     * 
+     * @param status lo stato non legacy
+     * @return lo stato in formato legacy
      */
     private String convertStatus(TaskStatus status) {
         return switch (status) {
@@ -42,6 +45,9 @@ public class LegacyTaskAdapter {
     
     /**
      * Converte una priorità moderna in formato legacy
+     * 
+     * @param priority la priorità non legacy
+     * @return la priorità in formato legacy
      */
     private int convertPriority(TaskPriority priority) {
         return switch (priority) {
@@ -54,6 +60,12 @@ public class LegacyTaskAdapter {
     
     /**
      * Classe interna che rappresenta il formato legacy
+     * 
+     * @param identifier l'ID del task
+     * @param name il nome del task
+     * @param notes le note del task
+     * @param state lo stato del task in formato legacy
+     * @param importance la priorità del task in formato legacy
      */
     public static class LegacyTask {
         public String identifier;

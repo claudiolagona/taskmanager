@@ -8,6 +8,9 @@ import java.util.NoSuchElementException;
 /**
  * Iterator personalizzato per i Task.
  * Implementa il pattern Iterator per attraversare collezioni.
+ * 
+ * @param tasks lista di task da iterare
+ * @param currentIndex indice corrente dell'iterazione
  */
 public class TaskIterator implements Iterator<Task> {
     private final List<Task> tasks;
@@ -15,6 +18,7 @@ public class TaskIterator implements Iterator<Task> {
     
     /**
      * Costruttore
+     * 
      * @param tasks lista di task da iterare
      */
     public TaskIterator(List<Task> tasks) {
@@ -43,6 +47,7 @@ public class TaskIterator implements Iterator<Task> {
     
     /**
      * Restituisce il numero totale di task
+     * 
      * @return numero totale
      */
     public int getTotalCount() {
@@ -51,6 +56,7 @@ public class TaskIterator implements Iterator<Task> {
     
     /**
      * Restituisce l'indice corrente
+     * 
      * @return indice corrente
      */
     public int getCurrentIndex() {

@@ -6,8 +6,10 @@ import com.taskmanager.services.TaskManager;
 import java.util.List;
 
 /**
- * Proxy che aggiunge controlli di sicurezza al TaskManager.
- * Implementa il pattern Proxy per controllare l'accesso.
+ * Proxy che aggiunge controlli di sicurezza al TaskManager per controllare l'accesso.
+ * 
+ * @param realTaskManager il TaskManager reale da prteggere
+ * @param currentUser l'utente che sta tentando di accedere al TaskManager
  */
 public class SecureTaskManager implements TaskManager {
     private final TaskManager realTaskManager;
@@ -15,6 +17,7 @@ public class SecureTaskManager implements TaskManager {
     
     /**
      * Costruttore del proxy
+     * 
      * @param realTaskManager il TaskManager reale
      * @param currentUser l'utente corrente
      */
@@ -66,6 +69,7 @@ public class SecureTaskManager implements TaskManager {
     
     /**
      * Semplice controllo di validità utente
+     * 
      * @return true se l'utente è valido
      */
     private boolean isValidUser() {

@@ -17,14 +17,12 @@ class TaskTest {
     @BeforeEach
     @DisplayName("Setup test: crea task di esempio")
     void setUp() {
-        // Arrange: prepara i dati per ogni test
         task = new Task("Task di Test", "Descrizione di esempio");
     }
     
     @Test
     @DisplayName("Dovrebbe creare un task con i parametri base")
     void shouldCreateTaskWithBasicParameters() {
-        // Assert: verifica che il task sia creato correttamente
         assertNotNull(task.getId(), "ID del task non dovrebbe essere null");
         assertEquals("Task di Test", task.getTitle(), "Titolo dovrebbe corrispondere");
         assertEquals("Descrizione di esempio", task.getDescription(), "Descrizione dovrebbe corrispondere");
@@ -47,17 +45,14 @@ class TaskTest {
     @Test
     @DisplayName("Dovrebbe aggiornare le proprietà del task")
     void shouldUpdateTaskProperties() {
-        // Arrange
         String nuovoTitolo = "Titolo Aggiornato";
         TaskStatus nuovoStatus = TaskStatus.DONE;
         TaskPriority nuovaPriorita = TaskPriority.HIGH;
         
-        // Act: esegui le modifiche
         task.setTitle(nuovoTitolo);
         task.setStatus(nuovoStatus);
         task.setPriority(nuovaPriorita);
         
-        // Assert: verifica che le modifiche siano state applicate
         assertEquals(nuovoTitolo, task.getTitle());
         assertEquals(nuovoStatus, task.getStatus());
         assertEquals(nuovaPriorita, task.getPriority());
@@ -66,11 +61,9 @@ class TaskTest {
     @Test
     @DisplayName("Dovrebbe implementare equals e hashCode correttamente")
     void shouldImplementEqualsAndHashCodeCorrectly() {
-        // Arrange
         Task task1 = new Task("Task 1", "Descrizione 1");
         Task task2 = new Task("Task 2", "Descrizione 2");
         
-        // Assert
         assertEquals(task1, task1, "Task dovrebbe essere uguale a se stesso");
         assertNotEquals(task1, task2, "Task diversi dovrebbero avere ID diversi");
         assertNotEquals(task1.hashCode(), task2.hashCode(), "HashCode dovrebbero essere diversi");

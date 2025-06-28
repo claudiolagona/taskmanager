@@ -11,8 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Classe per salvare e caricare i dati.
- * Versione semplificata che salva in formato testo semplice.
- * Usa Collections thread-safe (Multithreading).
+ * 
+ * @param fileName nome del file in cui salvare i dati
+ * @param cache mappa thread-safe per la cache in memoria
  */
 public class TaskStorage {
     private final String fileName;
@@ -21,6 +22,7 @@ public class TaskStorage {
     
     /**
      * Costruttore
+     * 
      * @param fileName nome del file per salvare i dati
      */
     public TaskStorage(String fileName) {
@@ -41,6 +43,7 @@ public class TaskStorage {
     
     /**
      * Salva un componente
+     * 
      * @param component il componente da salvare
      */
     public void save(TaskComponent component) {
@@ -53,8 +56,9 @@ public class TaskStorage {
     
     /**
      * Trova un componente per ID
+     * 
      * @param id l'ID da cercare
-     * @return il componente se trovato, null altrimenti
+     * @return il componente se trovato, altrimenti null
      */
     public TaskComponent findById(String id) {
         if (id == null || id.trim().isEmpty()) {
@@ -65,6 +69,7 @@ public class TaskStorage {
     
     /**
      * Restituisce tutti i componenti
+     * 
      * @return lista di tutti i componenti
      */
     public List<TaskComponent> findAll() {
@@ -72,7 +77,8 @@ public class TaskStorage {
     }
     
     /**
-     * Trova tutti i Task (usando Stream API)
+     * Trova tutti i Task
+     * 
      * @return lista di tutti i Task
      */
     public List<Task> findAllTasks() {
@@ -84,6 +90,7 @@ public class TaskStorage {
     
     /**
      * Trova tutti i Project
+     * 
      * @return lista di tutti i Project
      */
     public List<Project> findAllProjects() {
@@ -95,11 +102,11 @@ public class TaskStorage {
     
     /**
      * Elimina un componente
+     * 
      * @param id ID del componente da eliminare
      * @return true se eliminato, false se non trovato
      */
     public boolean delete(String id) {
-        // Aggiunta validazione per parametri null/vuoti
         if (id == null || id.trim().isEmpty()) {
             return false;
         }
@@ -112,7 +119,7 @@ public class TaskStorage {
     }
     
     /**
-     * Salva tutto su file di testo semplice (Java I/O)
+     * Salva tutto su file di testo semplice
      */
     private void saveToFile() {
         try {
@@ -166,6 +173,8 @@ public class TaskStorage {
     
     /**
      * Analizza una riga del file e crea l'oggetto corrispondente
+     * 
+     * @param line la riga da analizzare
      */
     private void parseLine(String line) {
         try {
@@ -175,8 +184,6 @@ public class TaskStorage {
                     parts[2].replace("\\|", "|"), // title
                     parts[3].replace("\\|", "|")  // description
                 );
-                // Imposta ID manualmente (normalmente non si farebbe)
-                // task.setId(parts[1]); // Se avessi un setter per ID
                 cache.put(parts[1], task);
             }
         } catch (Exception e) {
@@ -186,6 +193,7 @@ public class TaskStorage {
     
     /**
      * Restituisce il numero di elementi salvati
+     * 
      * @return numero di elementi
      */
     public int size() {
@@ -193,7 +201,7 @@ public class TaskStorage {
     }
 
     /**
-     * Stampa statistiche dello storage (per debugging)
+     * Stampa statistiche dello storage
      */
     public void printStats() {
         System.out.println("📊 STATISTICHE TASK STORAGE:");
@@ -204,7 +212,7 @@ public class TaskStorage {
     }
     
     /**
-     * Svuota la cache (per testing)
+     * Svuota la cache
      */
     public void clear() {
         cache.clear();

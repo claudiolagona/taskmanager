@@ -28,7 +28,7 @@ class TaskBuilderTest {
     @Test
     @DisplayName("Dovrebbe costruire task con configurazione completa")
     void shouldBuildTaskWithFullConfiguration() {
-        // Test Builder con tutte le opzioni (fluent interface)
+        // Test Builder con tutte le opzioni
         Task task = new TaskBuilder("Task Completo")
                 .withDescription("Descrizione dettagliata")
                 .withStatus(TaskStatus.IN_PROGRESS)
@@ -42,9 +42,8 @@ class TaskBuilderTest {
     }
     
     @Test
-    @DisplayName("Dovrebbe supportare method chaining (fluent interface)")
+    @DisplayName("Dovrebbe supportare method chaining")
     void shouldSupportMethodChaining() {
-        // Test del method chaining caratteristico del Builder pattern
         TaskBuilder builder = new TaskBuilder("Task Concatenato")
                 .withDescription("Test concatenazione")
                 .withPriority(TaskPriority.LOW)

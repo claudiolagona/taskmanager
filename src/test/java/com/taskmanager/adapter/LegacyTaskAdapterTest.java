@@ -28,10 +28,8 @@ class LegacyTaskAdapterTest {
     @Test
     @DisplayName("Dovrebbe convertire Task moderno in formato legacy")
     void shouldConvertModernTaskToLegacyFormat() {
-        // Act
         LegacyTaskAdapter.LegacyTask legacyTask = adapter.adaptToLegacy(testTask);
         
-        // Assert
         assertNotNull(legacyTask, "LegacyTask non dovrebbe essere null");
         assertEquals(testTask.getId(), legacyTask.identifier);
         assertEquals(testTask.getTitle(), legacyTask.name);

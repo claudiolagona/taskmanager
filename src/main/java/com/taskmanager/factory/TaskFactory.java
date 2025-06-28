@@ -6,12 +6,13 @@ import com.taskmanager.models.TaskComponent;
 
 /**
  * Factory per creare Task e Project.
- * Implementa il pattern Factory Method - semplifica la creazione di oggetti.
+ * Implementa il pattern Factory Method.
  */
 public class TaskFactory {
     
     /**
      * Crea un Task semplice
+     * 
      * @param title titolo del task
      * @param description descrizione del task
      * @return nuovo Task
@@ -22,6 +23,7 @@ public class TaskFactory {
     
     /**
      * Crea un Task solo con titolo
+     * 
      * @param title titolo del task
      * @return nuovo Task
      */
@@ -31,6 +33,7 @@ public class TaskFactory {
     
     /**
      * Crea un Project
+     * 
      * @param title titolo del progetto
      * @param description descrizione del progetto
      * @return nuovo Project
@@ -41,6 +44,7 @@ public class TaskFactory {
     
     /**
      * Crea un Project solo con titolo
+     * 
      * @param title titolo del progetto
      * @return nuovo Project
      */
@@ -50,6 +54,7 @@ public class TaskFactory {
     
     /**
      * Factory Method che crea il componente giusto in base al tipo
+     * 
      * @param type "task" o "project"
      * @param title titolo
      * @param description descrizione

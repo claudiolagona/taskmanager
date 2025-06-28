@@ -28,13 +28,10 @@ class SimpleTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe aggiungere task e notificare observer")
     void shouldAddTaskAndNotifyObserver() {
-        // Arrange
         Task task = TaskFactory.createTask("Task Test", "Descrizione");
         
-        // Act
         taskManager.addTask(task);
         
-        // Assert
         assertEquals(1, taskManager.getTaskCount());
         assertNotNull(taskManager.findTaskById(task.getId()));
         
@@ -59,14 +56,11 @@ class SimpleTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe trovare task per ID")
     void shouldFindTaskById() {
-        // Arrange
         Task task = TaskFactory.createTask("Task Ricercabile");
         taskManager.addTask(task);
         
-        // Act
         Task found = taskManager.findTaskById(task.getId());
         
-        // Assert
         assertNotNull(found);
         assertEquals(task.getId(), found.getId());
         assertEquals("Task Ricercabile", found.getTitle());
@@ -87,15 +81,12 @@ class SimpleTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe eliminare task e notificare")
     void shouldDeleteTaskAndNotify() {
-        // Arrange
         Task task = TaskFactory.createTask("Task da eliminare");
         taskManager.addTask(task);
         String taskId = task.getId();
         
-        // Act
         boolean deleted = taskManager.deleteTask(taskId);
         
-        // Assert
         assertTrue(deleted);
         assertEquals(0, taskManager.getTaskCount());
         assertNull(taskManager.findTaskById(taskId));
@@ -122,7 +113,6 @@ class SimpleTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe restituire tutti i task")
     void shouldReturnAllTasks() {
-        // Arrange
         Task task1 = TaskFactory.createTask("Task 1");
         Task task2 = TaskFactory.createTask("Task 2");
         Task task3 = TaskFactory.createTask("Task 3");
@@ -131,10 +121,8 @@ class SimpleTaskManagerTest {
         taskManager.addTask(task2);
         taskManager.addTask(task3);
         
-        // Act
         var allTasks = taskManager.getAllTasks();
         
-        // Assert
         assertEquals(3, allTasks.size());
         assertEquals(3, taskManager.getTaskCount());
         

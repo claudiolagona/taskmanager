@@ -29,28 +29,23 @@ class SecureTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe permettere operazioni con utente valido")
     void shouldAllowOperationsWithValidUser() {
-        // Arrange
         secureProxy = new SecureTaskManager(mockTaskManager, "utente.valido");
         
-        // Act & Assert - addTask
         assertDoesNotThrow(() -> secureProxy.addTask(testTask), 
                           "AddTask dovrebbe funzionare con utente valido");
         verify(mockTaskManager, times(1)).addTask(testTask);
         
-        // Act & Assert - getAllTasks
         when(mockTaskManager.getAllTasks()).thenReturn(Arrays.asList(testTask));
         List<Task> tasks = secureProxy.getAllTasks();
         assertNotNull(tasks);
         assertEquals(1, tasks.size());
         verify(mockTaskManager, times(1)).getAllTasks();
         
-        // Act & Assert - findTaskById
         when(mockTaskManager.findTaskById("123")).thenReturn(testTask);
         Task found = secureProxy.findTaskById("123");
         assertNotNull(found);
         verify(mockTaskManager, times(1)).findTaskById("123");
         
-        // Act & Assert - deleteTask
         when(mockTaskManager.deleteTask("123")).thenReturn(true);
         boolean deleted = secureProxy.deleteTask("123");
         assertTrue(deleted);
@@ -60,25 +55,20 @@ class SecureTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe bloccare operazioni con utente null")
     void shouldBlockOperationsWithNullUser() {
-        // Arrange
         secureProxy = new SecureTaskManager(mockTaskManager, null);
         
-        // Act & Assert - addTask dovrebbe lanciare SecurityException
         assertThrows(SecurityException.class, () -> secureProxy.addTask(testTask),
                     "AddTask dovrebbe lanciare SecurityException con utente null");
         verify(mockTaskManager, never()).addTask(any());
         
-        // Act & Assert - getAllTasks dovrebbe restituire lista vuota
         List<Task> tasks = secureProxy.getAllTasks();
         assertTrue(tasks.isEmpty(), "GetAllTasks dovrebbe restituire lista vuota");
         verify(mockTaskManager, never()).getAllTasks();
         
-        // Act & Assert - findTaskById dovrebbe restituire null
         Task found = secureProxy.findTaskById("123");
         assertNull(found, "FindTaskById dovrebbe restituire null");
         verify(mockTaskManager, never()).findTaskById(any());
         
-        // Act & Assert - deleteTask dovrebbe restituire false
         boolean deleted = secureProxy.deleteTask("123");
         assertFalse(deleted, "DeleteTask dovrebbe restituire false");
         verify(mockTaskManager, never()).deleteTask(any());
@@ -103,11 +93,9 @@ class SecureTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe gestire eccezioni del TaskManager reale")
     void shouldHandleExceptionsFromRealTaskManager() {
-        // Arrange
         secureProxy = new SecureTaskManager(mockTaskManager, "utente.valido");
         doThrow(new RuntimeException("Errore interno")).when(mockTaskManager).addTask(any());
         
-        // Act & Assert
         assertThrows(RuntimeException.class, () -> secureProxy.addTask(testTask),
                     "Dovrebbe propagare eccezioni del TaskManager reale");
         verify(mockTaskManager, times(1)).addTask(testTask);
@@ -116,7 +104,7 @@ class SecureTaskManagerTest {
     @Test
     @DisplayName("Dovrebbe permettere operazioni di lettura anche con utente non valido")
     void shouldAllowReadOperationsEvenWithInvalidUser() {
-        // Arrange - questo test riflette il comportamento attuale
+        // Questo test riflette il comportamento attuale
         secureProxy = new SecureTaskManager(mockTaskManager, null);
         
         // getAllTasks restituisce lista vuota ma non lancia eccezione

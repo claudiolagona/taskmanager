@@ -16,10 +16,8 @@ class TaskFactoryTest {
     @Test
     @DisplayName("Dovrebbe creare Task con Factory Method")
     void shouldCreateTaskWithFactoryMethod() {
-        // Act: usa factory per creare task
         Task task = TaskFactory.createTask("Task da Factory", "Descrizione");
         
-        // Assert: verifica creazione
         assertNotNull(task, "Factory dovrebbe creare task non null");
         assertEquals("Task da Factory", task.getTitle());
         assertEquals("Descrizione", task.getDescription());

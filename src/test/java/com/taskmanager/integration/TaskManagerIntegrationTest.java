@@ -156,7 +156,7 @@ class TaskManagerIntegrationTest {
         Task testingTask = TaskFactory.createTask("Testing", "Test del sistema");
         UrgentTaskDecorator urgentTesting = new UrgentTaskDecorator(testingTask);
         
-        // 3. Costruisci struttura (Composite)
+        // 3. Costruisci struttura
         webProject.addComponent(designTask);
         webProject.addComponent(codingTask);
         webProject.addComponent(urgentTesting);
@@ -253,14 +253,11 @@ class TaskManagerIntegrationTest {
     @Test
     @DisplayName("Dovrebbe trovare task per ID")
     void shouldFindTaskById() {
-        // Arrange
         Task task = TaskFactory.createTask("Task Ricercabile");
         taskManager.addTask(task);
         
-        // Act
         Task found = taskManager.findTaskById(task.getId());
         
-        // Assert
         assertNotNull(found);
         assertEquals(task.getId(), found.getId());
         assertEquals("Task Ricercabile", found.getTitle());
@@ -281,7 +278,6 @@ class TaskManagerIntegrationTest {
     @Test
     @DisplayName("Dovrebbe eliminare task e verificare conteggio")
     void shouldDeleteTaskAndVerifyCount() {
-        // Arrange
         Task task = TaskFactory.createTask("Task da eliminare");
         taskManager.addTask(task);
         String taskId = task.getId();
@@ -290,10 +286,8 @@ class TaskManagerIntegrationTest {
         assertEquals(1, taskManager.getTaskCount());
         assertNotNull(taskManager.findTaskById(taskId));
         
-        // Act
         boolean deleted = taskManager.deleteTask(taskId);
         
-        // Assert
         assertTrue(deleted);
         assertEquals(0, taskManager.getTaskCount());
         assertNull(taskManager.findTaskById(taskId));
@@ -313,7 +307,6 @@ class TaskManagerIntegrationTest {
     @Test
     @DisplayName("Dovrebbe restituire tutti i task")
     void shouldReturnAllTasks() {
-        // Arrange
         Task task1 = TaskFactory.createTask("Task 1");
         Task task2 = TaskFactory.createTask("Task 2");
         Task task3 = TaskFactory.createTask("Task 3");
@@ -322,10 +315,8 @@ class TaskManagerIntegrationTest {
         taskManager.addTask(task2);
         taskManager.addTask(task3);
         
-        // Act
         var allTasks = taskManager.getAllTasks();
         
-        // Assert
         assertEquals(3, allTasks.size());
         assertEquals(3, taskManager.getTaskCount());
         

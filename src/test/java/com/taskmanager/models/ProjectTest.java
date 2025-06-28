@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 /**
- * Test per la classe Project - Pattern Composite (Composite).
+ * Test per la classe Project - Pattern Composite.
  */
 @DisplayName("Test per la classe Project")
 class ProjectTest {
@@ -38,20 +38,16 @@ class ProjectTest {
     void shouldAddAndRemoveComponents() {
         // Test del pattern Composite
         
-        // Act: aggiungi componenti
         project.addComponent(task1);
         project.addComponent(task2);
         
-        // Assert: verifica aggiunta
         List<TaskComponent> components = project.getComponents();
         assertEquals(2, components.size(), "Dovrebbero esserci 2 componenti");
         assertTrue(components.contains(task1), "Dovrebbe contenere task1");
         assertTrue(components.contains(task2), "Dovrebbe contenere task2");
         
-        // Act: rimuovi componente
         project.removeComponent(task1);
         
-        // Assert: verifica rimozione
         assertEquals(1, project.getComponents().size(), "Dovrebbe rimanere 1 componente");
         assertFalse(project.getComponents().contains(task1), "Non dovrebbe più contenere task1");
         assertTrue(project.getComponents().contains(task2), "Dovrebbe ancora contenere task2");

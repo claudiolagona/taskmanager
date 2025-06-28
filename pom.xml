@@ -10,7 +10,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     
-    <n>Task Manager CLI</n>
+    <name>Task Manager CLI</name>
     <description>Task manager CLI</description>
     
     <properties>

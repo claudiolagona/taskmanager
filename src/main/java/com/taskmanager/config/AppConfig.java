@@ -6,10 +6,13 @@ import java.io.IOException;
 
 /**
  * Configurazione dell'applicazione.
- * Implementa il pattern Singleton - può esistere una sola istanza.
+ * 
+ * @param instance l'unica istanza di AppConfig
+ * @param properties le proprietà di configurazione
+ * @param initialized flag per verificare se la configurazione è già stata inizializzata
  */
 public class AppConfig {
-    // L'unica istanza (Singleton)
+    // L'unica istanza
     private static AppConfig instance;
     private Properties properties;
     private boolean initialized = false;
@@ -21,6 +24,7 @@ public class AppConfig {
     
     /**
      * Metodo per ottenere l'istanza singleton
+     * 
      * @return l'unica istanza di AppConfig
      */
     public static AppConfig getInstance() {
@@ -46,7 +50,7 @@ public class AppConfig {
     }
     
     /**
-     * Carica le proprietà dal file (Java I/O)
+     * Carica le proprietà dal file
      */
     private void loadProperties() {
         try (InputStream input = getClass().getResourceAsStream("/app.properties")) {
@@ -73,6 +77,7 @@ public class AppConfig {
     
     /**
      * Ottiene una proprietà di configurazione
+     * 
      * @param key la chiave della proprietà
      * @return il valore della proprietà
      */
@@ -82,6 +87,7 @@ public class AppConfig {
     
     /**
      * Ottiene una proprietà con valore di default
+     * 
      * @param key la chiave
      * @param defaultValue valore di default
      * @return il valore della proprietà o il default

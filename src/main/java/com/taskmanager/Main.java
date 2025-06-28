@@ -5,12 +5,12 @@ import com.taskmanager.config.AppConfig;
 
 /**
  * Classe principale dell'applicazione Task Manager.
- * Entry point del programma - il primo metodo che viene eseguito.
+ * Entry point del programma.
  */
 public class Main {
     
     /**
-     * Metodo main - punto di ingresso dell'applicazione
+     * Metodo main
      * @param args argomenti passati da linea di comando
      */
     public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class Main {
         System.out.println("========================================");
         
         try {
-            // Inizializza la configurazione (Singleton)
+            // Inizializza la configurazione
             AppConfig config = AppConfig.getInstance();
             config.init();
             

@@ -6,13 +6,15 @@ import com.taskmanager.models.TaskPriority;
 
 /**
  * Decorator base per aggiungere funzionalità ai TaskComponent.
- * Implementa il pattern Decorator.
+ * 
+ * @param wrappedComponent il componente da decorare
  */
 public abstract class TaskDecorator implements TaskComponent {
     protected final TaskComponent wrappedComponent;
     
     /**
      * Costruttore del decorator
+     * 
      * @param component il componente da decorare
      */
     protected TaskDecorator(TaskComponent component) {

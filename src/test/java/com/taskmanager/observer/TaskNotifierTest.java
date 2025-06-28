@@ -52,7 +52,6 @@ class TaskNotifierTest {
     @Test
     @DisplayName("Dovrebbe notificare tutti gli observer (Observer Pattern)")
     void shouldNotifyAllObservers() {
-        // Setup
         notifier.addObserver(mockObserver1);
         notifier.addObserver(mockObserver2);
         
@@ -60,10 +59,9 @@ class TaskNotifierTest {
         String message = "Test message";
         String taskId = "task123";
         
-        // Act
         notifier.notifyObservers(eventType, message, taskId);
         
-        // Assert - verifica che tutti gli observer siano stati notificati
+        // Verifica che tutti gli observer siano stati notificati
         verify(mockObserver1, times(1)).onTaskEvent(eventType, message, taskId);
         verify(mockObserver2, times(1)).onTaskEvent(eventType, message, taskId);
     }
@@ -79,12 +77,12 @@ class TaskNotifierTest {
         notifier.addObserver(faultyObserver);
         notifier.addObserver(mockObserver1);
         
-        // Act - notifica non dovrebbe fallire anche se un observer lancia eccezione
+        // Notifica non dovrebbe fallire anche se un observer lancia eccezione
         assertDoesNotThrow(() -> {
             notifier.notifyObservers("TEST", "message", "id");
         }, "Notifica non dovrebbe fallire per eccezioni negli observer");
         
-        // Assert - observer funzionante dovrebbe comunque essere notificato
+        // Observer funzionante dovrebbe comunque essere notificato
         verify(mockObserver1, times(1)).onTaskEvent("TEST", "message", "id");
     }
 }

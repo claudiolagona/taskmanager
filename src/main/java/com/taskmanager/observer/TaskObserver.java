@@ -1,7 +1,6 @@
 package com.taskmanager.observer;
 
 /**
- * Interfaccia Observer per il pattern Observer.
  * Gli observer vengono notificati quando succede qualcosa ai task.
  */
 public interface TaskObserver {

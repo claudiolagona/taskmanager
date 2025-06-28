@@ -24,7 +24,7 @@ public class SortByStatus implements SortStrategy<TaskComponent> {
     }
     
     /**
-     * Definisce l'ordine dei status per l'ordinamento
+     * Definisce l'ordine degli status per l'ordinamento
      */
     private int getStatusOrder(TaskStatus status) {
         return switch (status) {

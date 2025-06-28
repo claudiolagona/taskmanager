@@ -6,7 +6,14 @@ import java.util.UUID;
 
 /**
  * Classe che rappresenta un singolo Task.
- * È la "foglia" nel pattern Composite.
+ * 
+ * @param id ID univoco del task
+ * @param title titolo del task (obbligatorio)
+ * @param description descrizione del task (può essere null)
+ * @param status stato del task (TODO, IN_PROGRESS, DONE)
+ * @param priority priorità del task (LOW, MEDIUM, HIGH)
+ * @param createdAt data di creazione del task
+ * @param updatedAt data dell'ultimo aggiornamento del task
  */
 public class Task implements TaskComponent {
     private final String id;
@@ -19,8 +26,6 @@ public class Task implements TaskComponent {
     
     /**
      * Costruttore per creare un nuovo task
-     * @param title titolo del task (obbligatorio)
-     * @param description descrizione del task (può essere null)
      */
     public Task(String title, String description) {
         this.id = UUID.randomUUID().toString().substring(0, 8); // ID più corto per semplicità
@@ -32,7 +37,7 @@ public class Task implements TaskComponent {
         this.updatedAt = LocalDateTime.now();
     }
     
-    // Implementazione di TaskComponent (per Composite Pattern)
+    // Implementazione di TaskComponent
     @Override
     public String getId() {
         return id;

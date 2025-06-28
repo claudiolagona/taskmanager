@@ -23,7 +23,7 @@ class TaskStorageTest {
     void setUp() {
         // Setup con storage in memoria per test isolati
         storage = new TaskStorage("test-tasks.json");
-        storage.clear(); // Assicurati che sia vuoto
+        storage.clear(); // Ci assicuriamo che sia vuoto
         
         testTask = new Task("Task Test", "Descrizione test");
         testProject = new Project("Project Test", "Descrizione progetto");

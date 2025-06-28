@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * Strategia concreta per ordinare per titolo.
- * Implementa il pattern Strategy.
  */
 public class SortByTitle implements SortStrategy<TaskComponent> {
     
@@ -17,7 +16,6 @@ public class SortByTitle implements SortStrategy<TaskComponent> {
             return new ArrayList<>();
         }
         
-        // Usando Stream API e Lambda
         return items.stream()
                 .sorted(Comparator.comparing(TaskComponent::getTitle, String.CASE_INSENSITIVE_ORDER))
                 .toList();

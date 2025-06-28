@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Observer concreto che stampa i messaggi sulla console.
+ * 
+ * @param TIME_FORMAT formato per l'orario dei messaggi in console
  */
 public class ConsoleObserver implements TaskObserver {
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss");

@@ -13,11 +13,9 @@ class AppConfigTest {
     @Test
     @DisplayName("Dovrebbe restituire sempre la stessa istanza (Singleton)")
     void shouldReturnSameInstance() {
-        // Act
         AppConfig instance1 = AppConfig.getInstance();
         AppConfig instance2 = AppConfig.getInstance();
         
-        // Assert
         assertNotNull(instance1, "Prima istanza non dovrebbe essere null");
         assertNotNull(instance2, "Seconda istanza non dovrebbe essere null");
         assertSame(instance1, instance2, "Dovrebbe restituire la stessa istanza (Singleton)");
@@ -26,13 +24,10 @@ class AppConfigTest {
     @Test
     @DisplayName("Dovrebbe inizializzare correttamente")
     void shouldInitializeCorrectly() {
-        // Arrange
         AppConfig config = AppConfig.getInstance();
         
-        // Act
         assertDoesNotThrow(() -> config.init(), "Inizializzazione non dovrebbe lanciare eccezioni");
         
-        // Assert - dovrebbe avere proprietà di default
         assertNotNull(config.getProperty("app.name"));
         assertNotNull(config.getProperty("app.version"));
         assertNotNull(config.getProperty("storage.file"));
@@ -85,7 +80,7 @@ class AppConfigTest {
         AppConfig firstInstance = instances[0];
         for (int i = 1; i < instances.length; i++) {
             assertSame(firstInstance, instances[i], 
-                      "Tutte le istanze dovrebbero essere uguali (thread safety)");
+                      "Tutte le istanze dovrebbero essere uguali");
         }
     }
 }

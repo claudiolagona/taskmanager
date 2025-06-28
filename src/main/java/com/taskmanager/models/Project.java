@@ -6,7 +6,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Classe che rappresenta un Progetto contenente task e altri progetti.
- * È il "Composite" nel pattern Composite.
+ * 
+ * @param id ID univoce del progetto
+ * @param title titole del progetto
+ * @param description descrizione del progetto
+ * @param createdAt data di creazione del progetto
+ * @param updatedAt data dell'ultimo aggiornamento del progetto
+ * @param components lista dei componenti del progetto
  */
 public class Project implements TaskComponent {
     private final String id;
@@ -14,7 +20,6 @@ public class Project implements TaskComponent {
     private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    // Lista thread-safe per contenere i componenti
     private final List<TaskComponent> components;
     
     /**
@@ -28,11 +33,12 @@ public class Project implements TaskComponent {
         this.description = description;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-        this.components = new CopyOnWriteArrayList<>(); // Thread-safe per multithreading
+        this.components = new CopyOnWriteArrayList<>();
     }
     
     /**
-     * Aggiunge un componente al progetto (Composite Pattern)
+     * Aggiunge un componente al progetto
+     * 
      * @param component il componente da aggiungere
      */
     public void addComponent(TaskComponent component) {
@@ -44,6 +50,7 @@ public class Project implements TaskComponent {
     
     /**
      * Rimuove un componente dal progetto
+     * 
      * @param component il componente da rimuovere
      */
     public void removeComponent(TaskComponent component) {
@@ -53,7 +60,8 @@ public class Project implements TaskComponent {
     }
     
     /**
-     * Restituisce la lista dei componenti (Collections)
+     * Restituisce la lista dei componenti
+     * 
      * @return lista immutabile dei componenti
      */
     public List<TaskComponent> getComponents() {
@@ -87,7 +95,7 @@ public class Project implements TaskComponent {
             System.out.printf("%s   Descrizione: %s%n", indent, description);
         }
         
-        // Mostra tutti i componenti (ricorsione per Composite)
+        // Mostra tutti i componenti
         for (TaskComponent component : components) {
             component.display(indentLevel + 1);
         }
@@ -99,7 +107,7 @@ public class Project implements TaskComponent {
     }
     
     // Implementazione dei metodi per status e priority
-    // Per i progetti, restituiamo valori di default dato che sono concetti per i task
+    // Per i progetti, restituiamo valori di default
     @Override
     public TaskStatus getStatus() {
         // I progetti non hanno uno status specifico, restituiamo IN_PROGRESS se hanno componenti

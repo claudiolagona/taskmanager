@@ -24,7 +24,6 @@ class UrgentTaskDecoratorTest {
     @Test
     @DisplayName("Dovrebbe aggiungere prefisso URGENTE al titolo")
     void shouldAddUrgentPrefixToTitle() {
-        // Assert
         String urgentTitle = urgentTask.getTitle();
         assertTrue(urgentTitle.startsWith("🚨 URGENTE:"), 
                   "Titolo dovrebbe iniziare con prefisso urgente");
@@ -47,10 +46,8 @@ class UrgentTaskDecoratorTest {
     @Test
     @DisplayName("Dovrebbe permettere modifica del task decorato")
     void shouldAllowModificationOfDecoratedTask() {
-        // Act
         urgentTask.setTitle("Nuovo Titolo");
         
-        // Assert
         assertEquals("🚨 URGENTE: Nuovo Titolo", urgentTask.getTitle());
         assertEquals("Nuovo Titolo", baseTask.getTitle(), 
                     "Task base dovrebbe essere stato modificato");
