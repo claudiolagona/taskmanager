@@ -168,9 +168,9 @@ TaskNotifier -> ConsoleObserver : onTaskEvent()
 
 ## 5. Known Limitations and Future Work
 
-    - **Persistence:** Currently uses simple text files; consider integrating an embedded (H2) or external relational database for robustness.
-    - **Concurrency:** Limited thread safety via basic collections; advanced locking or transaction management could be added for multi-user scenarios.
-    - **User Interface:** CLI-only; develop a GUI or web-based frontend (e.g., using Spring Boot + React) for better usability.
-    - **Error Handling:** Minimal validation and error messages; introduce more comprehensive input validation and exception management.
-    - **Extensibility:** Add RESTful APIs for integration with other systems, and support for task dependencies and scheduling features.
-    - **Test Coverage:** Increase unit and integration tests for all components; adopt a continuous integration pipeline.
+- **Persistence:** Currently uses simple text files; consider integrating an embedded (H2) or external relational database for robustness.
+- **Concurrency:** Limited thread safety via basic collections; advanced locking or transaction management could be added for multi-user scenarios.
+- **User Interface:** CLI-only; develop a GUI or web-based frontend (e.g., using Spring Boot + React) for better usability.
+- **Error Handling:** Minimal validation and error messages; introduce more comprehensive input validation and exception management.
+- **Extensibility:** Add RESTful APIs for integration with other systems, and support for task dependencies and scheduling features.
+- **Test Coverage:** Increase unit and integration tests for all components; adopt a continuous integration pipeline.
