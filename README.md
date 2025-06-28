@@ -64,7 +64,7 @@ The Task Manager is a console-based Java application that allows users to create
 
 ### 4.1 Class Diagram
 
-![Class Diagram](https://www.plantuml.com/plantuml/png/hPDVQjmm4CRVVGezRbky1mXXoHye1BPjmBc0AiqQDROaf770DBbxjLgFa6Vz4kYBT_sRqMZc-yPt4MN0QHmQBzMhx44eD-vHnjTHslGQnDz626CHmaag42yfykX6xonOp34XleaUy4dllfGtV34uG06H09wVHBM9Vf3ppbWD5ecQU0HvgcjrA76ALJ4YCVzKcS_1k61mhdCByykVS-oZIGyro1ZpGCiShJ3wHdGOZEqNa1jcJ4DKmNWqphB8fQ6RNFFIunAWkoyXQkcJuX7Ox_Vh4Pw3-mCA_zSKYknDannDnDkLvuUb2wdrZZABUG56zmQSSwkl1s5hTVlUjXbjHcZUjOSFanaqX1NxBXMwC1TsX5wg-Hovrz8ZotvAGARyrRvtBc27YKDVwcJuC6TN62Dh6QPbg6xxwT2S38Ihh-lNxmZXhUhjqTde1hZY7QWfmFd8Z_ofib8rfnDcz0DiH9QDTI71mkwzJrUVJByOH1ABjZsGEvNA1HUtKfmhpW-Jw3MlvKqxydvW9Z2fDrDgsJSJQWlexbfw9dgkmNEu0PHLwqkQVpQ9MYgcREVmLIgUvU3NvgEv0wkdSVW7)
+![Class Diagram](https://www.plantuml.com/plantuml/png/xLVXRjis4Fxlf-2_oLZi1n02esc30W6IhbYo1s34YyD59WNoPDHR--uJ5Pvq36N1Mpgi0_8dCUy-VZhoxZwTtdcK3jjTlMXazIIt82gxMwFqJpjfkgKJVow4q0R1FSWAn5td-M1tZJLWiFS9yRFO0bwfObcAMtJQR4VhdSOQCeSd1uQ_vEnGUwjLn2ZjcreU2cqK62n322b0-skG3u7xtjeQf1cVUeiIMnzS8TpdrV1eylh-7uSC_CJpsMdhD1w8YTR4nH1D_942HyPlY-vFLKllUq2ykPNGYeuV3VnAoAR0LqutgArvuSaF4HtJyVmhwQBDbsEKEKNgpWz4T3zm4bzHbopxdvtz7IhyNWLGKI_wKbnhZ-T9Wsx-DmcNIXN3MSfKPbAaWvtTmpoOHpbuGYrDtz4h4vjguldNzRetJNee_vsJAi6kLYambOhthQuLkFzMCNnVG5gnvB7OviicXywNnzos-SPFDvpStVcs-x0YmSZL-wEiqBh3yFgh74Y4u9ayUeAAMS-0qPvWaweeyD0C6yv4zY2EJKE-Xgsi3W5meMI3h9PsLe4pmSCZpJSKE42MOsSzmpvQjvEO2K1bpHuStjcRuHb5tM-ub2W9VFIAhn2SH3k66YBW6hSX0MoT0uDNHi6NqBHqWu_IVu8lcCy79bhPUHrum29zMREPvzOwxCAL2Dinvxup5bbGIxv8JnLOtX_w1daj2TNkQtcU6-UVimJJ9ulwGREQilSUt1uS9_absZQZsfEf87mfE79Ay__M5XFYEf3Fime-4x9AbMOwxmdvS4dMz9tMzwTYhCJ2KRyrwWJK9TGmYKel-uCrtjRm8mIKNj4D-r2OKyEpvArqkaJExqvrisqKFLkhSUj9J7p8WneoccookAZh04ddYWrhfcUlZz9H9a8orvnGjGxurJ8H95l9xpwwjRzeyT4w_GUe5xANanR7o9Oi6Mzvh1wXUg9hbU5HHqVxMxrhwicyURIkCz2uqY-YoqJzB1CrVKl1zsabTjyl9uaRsPpJAPAdoJqS5SZQoeanc3cxWwHdIAuXtPfh_4NJT3B_eBVZj6yyIbD1EVg6UTqsu5233vcZtz4vW0ishrr5hcAPi94xaXoA9pXGbFbdtIJiJEnbtSAHi_qaVeMwRnt_g9iG8l-kMQqs_LgKiMO9G5Cs0ORfbYFpMPKJoc0YFXefEK1tjaZ4vxFr-kicAJ7o3wFNSGXDLHC0rk8K9nynIXA3BfpiTH_e4lX2P9fEAFvYI5NfT115HzrJYjQ3duNIoGYR1fXYQLtsdR4DEH1e5zyMxy2eTbV_1G00)
 
 <details>
 <summary>View PlantUML Source Code</summary>
@@ -73,15 +73,15 @@ The Task Manager is a console-based Java application that allows users to create
 @startuml
 package com.taskmanager {
   interface TaskComponent {
-    + getId()
-    + getTitle()
-    + setTitle(title)
-    + display(indent)
-    + isLeaf()
-    + getStatus()
-    + setStatus(status)
-    + getPriority()
-    + setPriority(priority)
+    + getId(): String
+    + getTitle(): String
+    + setTitle(title: String): void
+    + display(indent: int): void
+    + isLeaf(): boolean
+    + getStatus(): TaskStatus
+    + setStatus(status: TaskStatus): void
+    + getPriority(): TaskPriority
+    + setPriority(priority: TaskPriority): void
   }
 
   class Task {
@@ -90,10 +90,17 @@ package com.taskmanager {
     - description: String
     - status: TaskStatus
     - priority: TaskPriority
-    + getId()
-    + getTitle()
-    + setTitle()
-    + ...
+    + getId(): String
+    + getTitle(): String
+    + setTitle(title: String): void
+    + getDescription(): String
+    + setDescription(description: String): void
+    + getStatus(): TaskStatus
+    + setStatus(status: TaskStatus): void
+    + getPriority(): TaskPriority
+    + setPriority(priority: TaskPriority): void
+    + display(indent: int): void
+    + isLeaf(): boolean
   }
 
   class Project {
@@ -101,46 +108,156 @@ package com.taskmanager {
     - title: String
     - description: String
     - components: List<TaskComponent>
-    + add(component)
-    + remove(component)
-    + display(indent)
-    + ...
+    + getId(): String
+    + getTitle(): String
+    + setTitle(title: String): void
+    + getDescription(): String
+    + setDescription(description: String): void
+    + add(component: TaskComponent): void
+    + remove(component: TaskComponent): void
+    + getComponents(): List<TaskComponent>
+    + display(indent: int): void
+    + isLeaf(): boolean
   }
 
-  TaskComponent <|-- Task
-  TaskComponent <|-- Project
+  TaskComponent <|.. Task
+  TaskComponent <|.. Project
+  Project o-- TaskComponent
 
-  class TaskBuilder
-  class TaskFactory
-  class LegacyTaskAdapter
-  class TaskIterator
-  interface SortStrategy
-  class SortByTitle
-  class SortByPriority
-  class SortByStatus
-  class TaskNotifier
-  interface TaskObserver
-  class ConsoleObserver
-  class SecureTaskManager
-  interface TaskManager
-  class SimpleTaskManager
-  class TaskStorage
-  class AppConfig
+  class TaskBuilder {
+    - id: String
+    - title: String
+    - description: String
+    - status: TaskStatus
+    - priority: TaskPriority
+    + setId(id: String): TaskBuilder
+    + setTitle(title: String): TaskBuilder
+    + setDescription(description: String): TaskBuilder
+    + setStatus(status: TaskStatus): TaskBuilder
+    + setPriority(priority: TaskPriority): TaskBuilder
+    + build(): Task
+  }
 
-  TaskBuilder --> Task
-  TaskFactory --> TaskComponent
-  LegacyTaskAdapter --> Task
-  TaskIterator --> Task
+  class TaskFactory {
+    + createTask(title: String): Task
+    + createProject(title: String): Project
+    + createTaskComponent(type: String, title: String): TaskComponent
+  }
+
+  class LegacyTaskAdapter {
+    - modernTask: Task
+    + LegacyTaskAdapter(task: Task)
+    + getLegacyFormat(): String
+    + convertToModernTask(legacyData: String): Task
+  }
+
+  class TaskIterator {
+    - tasks: List<Task>
+    - currentIndex: int
+    + hasNext(): boolean
+    + next(): Task
+    + reset(): void
+  }
+
+  interface SortStrategy {
+    + sort(tasks: List<Task>): List<Task>
+  }
+
+  class SortByTitle {
+    + sort(tasks: List<Task>): List<Task>
+  }
+
+  class SortByPriority {
+    + sort(tasks: List<Task>): List<Task>
+  }
+
+  class SortByStatus {
+    + sort(tasks: List<Task>): List<Task>
+  }
+
+  class TaskNotifier {
+    - observers: List<TaskObserver>
+    + addObserver(observer: TaskObserver): void
+    + removeObserver(observer: TaskObserver): void
+    + notifyObservers(task: Task, action: String): void
+  }
+
+  interface TaskObserver {
+    + onTaskCreated(task: Task): void
+    + onTaskUpdated(task: Task): void
+    + onTaskDeleted(task: Task): void
+  }
+
+  class ConsoleObserver {
+    + onTaskCreated(task: Task): void
+    + onTaskUpdated(task: Task): void
+    + onTaskDeleted(task: Task): void
+  }
+
+  interface TaskManager {
+    + createTask(title: String, description: String): Task
+    + createProject(title: String, description: String): Project
+    + updateTask(id: String, title: String, description: String): void
+    + deleteTask(id: String): void
+    + getAllTasks(): List<Task>
+    + sortTasks(strategy: SortStrategy): List<Task>
+  }
+
+  class SecureTaskManager {
+    - taskManager: TaskManager
+    - isAuthorized: boolean
+    + SecureTaskManager(taskManager: TaskManager)
+    + createTask(title: String, description: String): Task
+    + createProject(title: String, description: String): Project
+    + updateTask(id: String, title: String, description: String): void
+    + deleteTask(id: String): void
+    + getAllTasks(): List<Task>
+    + checkAuthorization(): boolean
+  }
+
+  class SimpleTaskManager {
+    - storage: TaskStorage
+    - notifier: TaskNotifier
+    + createTask(title: String, description: String): Task
+    + createProject(title: String, description: String): Project
+    + updateTask(id: String, title: String, description: String): void
+    + deleteTask(id: String): void
+    + getAllTasks(): List<Task>
+    + sortTasks(strategy: SortStrategy): List<Task>
+  }
+
+  class TaskStorage {
+    - tasks: Map<String, Task>
+    + save(task: Task): void
+    + load(id: String): Task
+    + loadAll(): List<Task>
+    + delete(id: String): void
+  }
+
+  class AppConfig {
+    - instance: AppConfig
+    - properties: Properties
+    - AppConfig()
+    + getInstance(): AppConfig
+    + getProperty(key: String): String
+    + setProperty(key: String, value: String): void
+  }
+
+  ' Relationships
+  TaskBuilder --> Task : creates
+  TaskFactory --> TaskComponent : creates
+  LegacyTaskAdapter --> Task : adapts
+  TaskIterator --> Task : iterates
   SortByTitle ..|> SortStrategy
   SortByPriority ..|> SortStrategy
   SortByStatus ..|> SortStrategy
-  TaskNotifier --> TaskObserver
+  TaskNotifier --> TaskObserver : notifies
   ConsoleObserver ..|> TaskObserver
   SecureTaskManager ..|> TaskManager
   SimpleTaskManager ..|> TaskManager
-  SimpleTaskManager --> TaskStorage
-  SimpleTaskManager --> TaskNotifier
-  AppConfig --> *
+  SimpleTaskManager --> TaskStorage : uses
+  SimpleTaskManager --> TaskNotifier : uses
+  SecureTaskManager --> TaskManager : delegates to
 }
 @enduml
 ```
@@ -149,38 +266,47 @@ package com.taskmanager {
 
 ### 4.2 Architectural Diagram
 
-![Architectural Diagram](https://www.plantuml.com/plantuml/png/TP31Rkf034NtynKMg_SMLVSHGaY81HAqbMW_m4sSTDJ4HhO3JQl-UoUK1J1bDvBlEHxVkJcgzrqRi7HHU37I49HAHsvQWibYlO8r3gGJ-0e0fNGxOMA7PxJt3J8sf2aJlY-eBPMzHX_-HezJEXF0TFgayZ7CPfb7zx6a6vhOxTehpGd8H2kk5SsrBpsjldtHraMJQlmGgKLpuj6MvHx4OnsFApTaXatavdVfs23SpQxwWGAMxAIZfaEkB5pD4v7NKi2Ej1RjGD83FGh_-n_oN8BpCWf8v06rWbW3zluc6Z-f2baouHUt5w24rVr1enDu6jWjvgo70dXy3Y2lHhedjN0nJ_c5i4bBZwT0GeJ7p79FxEckEN7LT-qF)
+![Architectural Diagram](https://www.plantuml.com/plantuml/png/TP91ZzD038Nl-HKc9pXKt55KhLGLQQLTM6dXriiaSTE1n8viPvU2-EzuckxG4lPKAtx-zDxhtAW5iMdeYpTsm05Xx4EaeWYDiS1NHIaAmSO2TJr2kRcxXRjmH2dXLm7Gy30o8Hby2VhzFb3eK98cAFXFyVlg-16RIQ8T_qyuRV62ao3vfAeUX7ySr-i5KvvYWwyWup3s2-HyuSJpj63Uqbw2caoDkQFNypuQYrCJz3mccoWQrP0IU77oYItkusmaprLrZwgXYzJzSx9XKkxnSwrkTRxASrMzZ7E0z5_1QhM6rFy7ABTaA8ar16grBFnpMkTAasP4sRCCm3u4YqnltvL55hWwj-LYLpu7QI7k8KnsO8a_iNNvMU7gN8Eh1KFx_jav2ER1zLgOixkIqdm4FgTnPTwwD0TEKgPKulO9oPBJmayH97O70zvV9TkIssrGGLy-ojIZxgX6No2qs6FdaQa3Oz3PMha0vl2RT5HF6WbLeUSkDZloOa_XO3Wzhm79peYQpNXmncKb7sEFgpeejZ3-VIMxv7Jk219m5Fw6ZUc2TDdPmrJtKG-eWAaC1UCT2NQ9ATXUbdc3r4v3_mS0)
 
 <details>
 <summary>View PlantUML Source Code</summary>
 
 ```plantuml
 @startuml
+!theme plain
+
 actor User
 
 rectangle "CLI Layer" {
-  component TaskManagerCLI
+  component TaskManagerCLI as CLI
 }
 
 rectangle "Security Layer" {
-  component SecureTaskManager <<Proxy>>
+  component SecureTaskManager as Security <<Proxy>>
 }
 
 rectangle "Service Layer" {
-  component SimpleTaskManager <<Service>>
+  component SimpleTaskManager as Service <<Service>>
 }
 
 rectangle "Infrastructure Layer" {
-  component TaskStorage <<Persistence>>
-  component TaskNotifier <<Messaging>>
+  component TaskStorage as Storage <<Persistence>>
+  component TaskNotifier as Notifier <<Messaging>>
+  component ConsoleObserver as Observer <<Observer>>
 }
 
-User -> TaskManagerCLI : Enter commands
-TaskManagerCLI -> SecureTaskManager : perform operation()
-SecureTaskManager -> SimpleTaskManager : forward if authorized
-SimpleTaskManager -> TaskStorage : read/write tasks
-SimpleTaskManager -> TaskNotifier : notify observers
-TaskNotifier -> ConsoleObserver : onTaskEvent()
+User --> CLI : "Enter commands"
+CLI --> Security : "perform operation()"
+Security --> Service : "forward if authorized"
+Service --> Storage : "read/write tasks"
+Service --> Notifier : "notify observers"
+Notifier --> Observer : "onTaskEvent()"
+
+note right of Security : "Enforces security rules\nbefore delegating to service"
+note right of Service : "Core business logic\nand task management"
+note bottom of Storage : "File-based persistence\nfor tasks and projects"
+note bottom of Notifier : "Publishes events to\nregistered observers"
+
 @enduml
 ```
 
